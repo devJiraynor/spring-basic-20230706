@@ -6,9 +6,13 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.jihoon.basic.dto.request.PostRequestBodyDto;
 
 // description: Controller - 레이어드 아키텍처 상의 프레젠테이션 영역 //
 // description: 클라이언트로부터 요청(입력)을 받고 서비스 결과를 응답(출력)하는 영역 //
@@ -67,11 +71,33 @@ public class MainController {
         return "This method is Delete method";
     }
 
+    // description: @PathVariabale - Path 자체를 변수의 값으로 인식 //
+    // description: {변수명}로 표현 -> @PathVariable("변수명")로 받음 //
     @GetMapping("path-variable/{variable}")
     public String getPathVariable(
         @PathVariable("variable") String variable
     ) {
         return "Parameter value : " + variable;
+    }
+
+    // description: @RequestParam - Query Parameter로 Key와 Value를 받아옴 //
+    // description: Query Parameter - ?name1=value1&name2=value... //
+    // description: @RequestParam("name1") -> name1에 대한 value1를 받음 //
+    @GetMapping("parameter")
+    public String getParameter(
+        @RequestParam("name") String name,
+        @RequestParam("age") Integer age
+    ) {
+        return "name: " + name + ", age: " + age;
+    }
+
+    // description: @RequestBody - Request의 Body에 포함된 데이터를 받아옴 //
+    // description: 문자열 혹은 객체로 받을 수 있음 //
+    @PostMapping("request-body")
+    public String postRequestBody(
+        @RequestBody PostRequestBodyDto requestBody
+    ) {
+        return "Request의 Body는 " + requestBody.getName() + " " + requestBody.getAge() + " 입니다.";
     }
     
 }
