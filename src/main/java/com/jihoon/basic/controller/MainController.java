@@ -1,5 +1,7 @@
 package com.jihoon.basic.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.jihoon.basic.dto.request.PatchValidationDto;
 import com.jihoon.basic.dto.request.PostRequestBodyDto;
 
 // description: Controller - 레이어드 아키텍처 상의 프레젠테이션 영역 //
@@ -99,6 +102,13 @@ public class MainController {
         @RequestBody PostRequestBodyDto requestBody
     ) {
         return "Request의 Body는 " + requestBody.getName() + " " + requestBody.getAge() + " 입니다.";
+    }
+
+    @PatchMapping("validation")
+    public String validation(
+        @RequestBody @Valid PatchValidationDto requestBody
+    ) {
+        return requestBody.getArg1();
     }
     
 }
