@@ -2,6 +2,7 @@ package com.jihoon.basic.controller;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,6 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.jihoon.basic.dto.request.PatchValidationDto;
 import com.jihoon.basic.dto.request.PostRequestBodyDto;
 import com.jihoon.basic.dto.response.TmpResponseDto;
+import com.jihoon.basic.service.MainService;
+import com.jihoon.basic.service.implement.MainServiceImplement;
+
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 // description: Controller - 레이어드 아키텍처 상의 프레젠테이션 영역 //
 // description: 클라이언트로부터 요청(입력)을 받고 서비스 결과를 응답(출력)하는 영역 //
@@ -29,7 +35,10 @@ import com.jihoon.basic.dto.response.TmpResponseDto;
 // description: @ResquestMapping - Request의 URL 패턴에 따라 클래스 및 메소드를 결정하는 어노테이션 //
 @RequestMapping("/")  // http://localhost:4000/**
 // @RequestMapping("/main") http://localhost:4000/main/**
+@RequiredArgsConstructor
 public class MainController {
+
+    private final MainService mainService;
 
     // http://localhost:4000/hello GET
     @RequestMapping(value="hello", method={RequestMethod.POST})
@@ -42,7 +51,7 @@ public class MainController {
     // description: 데이터 입력시 URL로 입력 //
     @GetMapping("")
     public String getMethod() {
-        return "This method is Get Method";
+        return mainService.getMethod();
     }
 
     // description: @RequestMapping 중 Post Method에 한정하여 인식 //
