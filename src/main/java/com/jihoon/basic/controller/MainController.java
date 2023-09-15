@@ -81,7 +81,7 @@ public class MainController {
     }
 
     // description: @RequestParam - Query Parameter로 Key와 Value를 받아옴 //
-    // description: Query Parameter - ?name1=value1&name2=value... //
+    // description: Query Parameter - ?name1=value1&name2=value2... //
     // description: @RequestParam("name1") -> name1에 대한 value1를 받음 //
     @GetMapping("parameter")
     public String getParameter(
@@ -95,6 +95,7 @@ public class MainController {
     // description: 문자열 혹은 객체로 받을 수 있음 //
     @PostMapping("request-body")
     public String postRequestBody(
+        // @RequestBody String requestBody
         @RequestBody PostRequestBodyDto requestBody
     ) {
         return "Request의 Body는 " + requestBody.getName() + " " + requestBody.getAge() + " 입니다.";
