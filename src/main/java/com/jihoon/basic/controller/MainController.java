@@ -38,6 +38,18 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MainController {
 
+    // description: @Autowired - Java bean으로 등록되어 있는 클래스에 대해서 제어의 역전을 통해 의존성을 주입하는 어노테이션 //
+    // @Autowired
+    // description: IoC를 통해서 DI 하는 방법 //
+    // description: 1. 멤버변수를 사용한 DI //
+    // description: 2. setter 메서드를 사용한 DI //
+    // description: 3. 생성자를 사용한 DI //
+
+    // description: Spring Framework 공식 문서상에서 생성자를 사용한 DI를 권장 //
+    // description: 생성자를 사용한 DI에서는 @Autowired를 사용하지 않아도 됨 //
+
+    // description: 아래 방법은 생성자를 사용한 IoC를 통한 DI이며 final로 지정하여 필수 멤버 변수로 지정 함 //
+    // description: lombok 라이브러리의 @RequiredArgsConstructor 를 사용하여 필수 멤버 변수의 생성자를 만듬 //
     private final MainService mainService;
 
     // http://localhost:4000/hello GET
