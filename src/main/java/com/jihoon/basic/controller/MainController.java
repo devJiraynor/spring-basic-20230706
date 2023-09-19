@@ -21,6 +21,7 @@ import com.jihoon.basic.dto.request.PatchNicknameRequestDto;
 import com.jihoon.basic.dto.request.PatchValidationDto;
 import com.jihoon.basic.dto.request.PostRequestBodyDto;
 import com.jihoon.basic.dto.request.PostUserRequestDto;
+import com.jihoon.basic.dto.response.DeleteUserResponseDto;
 import com.jihoon.basic.dto.response.PatchNicknameResponseDto;
 import com.jihoon.basic.dto.response.PostUserResponseDto;
 import com.jihoon.basic.dto.response.ResponseDto;
@@ -160,6 +161,14 @@ public class MainController {
         @RequestBody @Valid PatchNicknameRequestDto requestBody
     ) {
         ResponseEntity<? super PatchNicknameResponseDto> response = mainService.patchNickname(requestBody);
+        return response;
+    }
+
+    @DeleteMapping("user/{email}")
+    public ResponseEntity<? super DeleteUserResponseDto> deleteUser(
+        @PathVariable("email") String email
+    ) {
+        ResponseEntity<? super DeleteUserResponseDto> response = mainService.deleteUser(email);
         return response;
     }
     

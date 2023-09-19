@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.jihoon.basic.dto.request.PatchNicknameRequestDto;
 import com.jihoon.basic.dto.request.PostUserRequestDto;
+import com.jihoon.basic.dto.response.DeleteUserResponseDto;
 import com.jihoon.basic.dto.response.PatchNicknameResponseDto;
 import com.jihoon.basic.dto.response.PostUserResponseDto;
 import com.jihoon.basic.dto.response.ResponseDto;
@@ -78,5 +79,27 @@ public class MainServiceImplement implements MainService {
         return ResponseEntity.status(HttpStatus.OK).body(new PatchNicknameResponseDto("SU", "SUCCESS"));
 
     }
+
+    @Override
+    public ResponseEntity<? super DeleteUserResponseDto> deleteUser(String email) {
+        
+        // DELETE FROM user WHERE email = email;
+
+        try {
+
+            // description: Delete 작업 순서 (DELETE) //
+            // description: 1. repository의 deleteById 메서드 사용 //
+            userRepository.deleteById(email);
+
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ResponseDto("DBE", "Database Error"));
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(new DeleteUserResponseDto("SU", "SUCCESS"));
+
+    }
+
+    
     
 }
