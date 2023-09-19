@@ -99,7 +99,5 @@ public class MainServiceImplement implements MainService {
         return ResponseEntity.status(HttpStatus.OK).body(new DeleteUserResponseDto("SU", "SUCCESS"));
 
     }
-
-    
     
 }

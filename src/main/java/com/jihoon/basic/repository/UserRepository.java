@@ -1,5 +1,7 @@
 package com.jihoon.basic.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,4 +15,11 @@ import com.jihoon.basic.entity.UserEntity;
 // description: JpaRepository<T, ID> - T: 해당 리포지토리에서 사용될 엔터티 클래스, ID: 해당 엔터티 클래스에서 지정한 기본키 필드의 타입 //
 public interface UserRepository extends JpaRepository<UserEntity, String> {
     
+    // SELECT * FROM user WHERE email = '??';
+    UserEntity findByEmail(String email);
+    // SELECT * FROM user WHERE email = '??' AND nickname = '??';
+    UserEntity findByEmailAndNickname(String email, String nickname);
+    // SELECT * FROM user WHERE address_detail = '??' ORDER BY address DESC;
+    List<UserEntity> findByAddressDetailOrderByAddressDesc(String addressDetail);
+
 }
