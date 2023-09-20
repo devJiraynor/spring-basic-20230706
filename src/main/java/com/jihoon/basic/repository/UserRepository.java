@@ -32,7 +32,6 @@ public interface UserRepository extends JpaRepository<UserEntity, String> {
     // description: @Query - 쿼리 메서드만으로 데이터베이스 작업을 수행할 수 없을 때 사용하는 어노테이션 //
     // description: JPQL (Java Persistence Query Languege) - SQL과 문법은 유사하지만 데이터베이스 테이블이 아니는 엔터티 클래스 기준으로 쿼리를 작성 //
     // description: Native Query - SQL //
-    
     // JPQL
     // SELECT * FROM user WHERE email = '??';
     @Query(value="SELECT u FROM user u WHERE u.email = ?1")
@@ -47,12 +46,12 @@ public interface UserRepository extends JpaRepository<UserEntity, String> {
     UserEntity findByEmailAndNicknameJPQL(String email, String nickname);
 
     @Query(value=
-        "SELECT * " + 
+        "SELECT * " +
         "FROM user " +
         "WHERE email IN ( " +
         "   SELECT DISTINCT writer_email " +
         "   FROM board " +
-        ")"    
+        ")"
     , nativeQuery=true)
     List<UserEntity> getBoardWriterUserList();
 
