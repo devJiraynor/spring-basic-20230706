@@ -49,7 +49,7 @@ public class WebSecurityConfig {
             .authorizeRequests()
             // description: antMatcher() - 특정 요청 지정 (url 패턴에 따른 지정, http method에 따른 지정, http method + url 패턴에 따른 지정) //
             // description: url 패턴에 따른 지정 (/user 로 시작하는 모든 요청에 대하여 허용) //
-            .antMatchers("/user/**").permitAll()
+            .antMatchers("/user/**", "/sign-in").permitAll()
             // description: http method에 따른 지정 (모든 GET 요청에 대해서 허용) //
             .antMatchers(HttpMethod.GET).permitAll()
             // description: http method + url 패턴에 따른 지정 (POST /board 로 시작하는 모든 요청에 대하여 허용) //
